@@ -4,5 +4,8 @@
     box-sizing: inherit;
 }
 body{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
     box-sizing: border-box;
 }

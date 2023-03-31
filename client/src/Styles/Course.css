@@ -11,7 +11,7 @@
   position: relative;
 }
 .main-course {
-  flex: 6;
+  flex: 6.2;
   background-color: rgb(243, 247, 249);
   overflow-y: auto;
 }
@@ -20,10 +20,9 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  
+
   width: 100%;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
-
 }
 .main-sidebar ul {
   display: block;
@@ -67,19 +66,72 @@
 .side-bar-freshdesk-heading {
   font-family: "Source Sans Pro", sans-serif;
   text-align: left;
-
+  font-weight: 500;
   margin: 0 0 20px 0;
   width: 70%;
 }
 
 .side-bar-freshdesk-button {
-    background-color: rgba(255, 255, 255, 0.08);
-    width: 70%;
-    color: inherit;
-    font-size: 18px;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 600;
-    border: 0;
-    border-radius: 8px;
-    padding: 0.5rem 0;
+  background-color: rgba(255, 255, 255, 0.08);
+  width: 70%;
+  color: inherit;
+  font-size: 18px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  border: 0;
+  border-radius: 8px;
+  padding: 0.5rem 0;
+}
+
+.main-course .nav {
+  justify-content: center;
+  border-bottom: 0.5px solid rgba(33, 42, 57, 0.25);
+  background: #fff;
+  box-shadow: 0 4px 8px 0 rgba(207, 224, 235, 0.5);
+  margin: 0 !important;
+  height: 60px;
+  display: flex;
+  padding: 0 16px 0 0;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+.main-course .nav-title {
+  flex: 3;
+  color: rgba(33, 42, 57, 0.5);
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 36px;
+  line-height: 24px;
+  font-family: "Source Sans Pro", sans-serif;
+}
+.main-course .nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+}
+.main-course .nav-right .usertext {
+  text-align: left;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+  color: rgba(33, 42, 57, 0.75);
+  font-family: "Source Sans Pro", sans-serif;
+}
+.main-course .nav-get-help {
+  display: flex;
+  background-color: rgba(5, 86, 70, 0.08);
+  border: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  border-radius: 8px;
+  padding: 8px 10px;
+  justify-content: center;
+  font-size: 18px;
+  color: #055646;
+  gap: 3px;
+  width: fit-content;
+  cursor: pointer;
 }
