@@ -1,0 +1,16 @@
+[
+  {
+    "course_name": "Introduction to Machine Learning",
+    "course_img": "https://cdn.eckovation.com/images/Introduction-to-Machine-Learning.png",
+    "chapters": [
+        {
+           "chapter_name": "Introduction",
+           "lectures": [
+            {
+                "lecture_name": "What is Machine Learning"
+            }
+           ]
+        }
+    ]
+  }
+]
