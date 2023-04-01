@@ -8,6 +8,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import LockIcon from '@mui/icons-material/Lock';
 
 import axios from "axios";
 import { Container } from "@mui/material";
@@ -49,6 +50,11 @@ function Course() {
                   <img src={coursedata.course_img} alt="course_img" />
                   <div className="card-content">
                     <div className="title">{coursedata.course_name}</div>
+                    <div className="batchnumber">
+                      {
+                        `Batch: Default_Batch_1625571974257_${coursedata.course_name}`
+                      }
+                    </div>
                     <div className="content">0% Complete</div>
                   </div>
                 </div>
@@ -60,17 +66,22 @@ function Course() {
                       {chaptersdata.map((chapter) => {
                         return (
                           <Accordion key={chapter._id}>
-                            <AccordionSummary
+                            <AccordionSummary 
                               expandIcon={<ExpandMoreIcon />}
                               aria-controls="panel1a-content"
                               id="panel1a-header"
                             >
+                              <Container>
                               <h2>
                                 {
                                   `${chaptersdata.indexOf(chapter) + 1}.  ${chapter.chapter_name}`
                                 }
                                 
                               </h2>
+                              <p>{
+                                `${chapter.lectures.length} Lectures` 
+                              }</p>
+                              </Container>
                             </AccordionSummary>
                             <AccordionDetails>
                               {chapter.lectures.map((lecture) => {
@@ -97,6 +108,25 @@ function Course() {
                       })}
                     </div>
                   )}
+                </div>
+                <div className="certificate-card">
+                  <img src="https://cdn.eckovation.com/courses/images/leran-cetificate-icon.svg" alt="" />
+                  <div className="certificate-card-content">
+                    <div className="title">
+                      Certificate
+                    </div>
+                    <div className="description">
+                    <LockIcon sx={{
+                      color: '#91949D',
+                      mx: '5px'
+                    }}/>
+                    Complete the course to download the certificate
+                  
+                    </div>
+                    <button>
+                      Get Certificate
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

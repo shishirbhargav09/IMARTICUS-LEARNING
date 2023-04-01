@@ -175,6 +175,79 @@
   display: flex;
   flex-direction: row;
   gap: 2rem;
+  overflow: hidden;
+}
+.main-course .card .batchnumber{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  color: #055646;
+  background-color: rgba(5, 86, 70, 0.1);
+  border-radius: 4px;
+  padding: 7px 12px;
+  max-width: 100%;
+  width: fit-content;
+  height: 35px;
+  margin-top: 8px;
+
+}
+.main-course .certificate-card {
+  margin: 1.2rem;
+  background: #fff;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0 0;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  box-shadow: 0px 0px 15px -3px rgba(0,0,0,0.1);
+}
+.main-course .certificate-card-content {
+  flex: 9;
+}
+.main-course .certificate-card-content .title {
+  display: inline-flex;
+  font-size: 18px;
+  color: #212a39;
+  font-weight: 600;
+  line-height: 22px;
+  width: 100%;
+  padding-bottom: 5px;
+  border-bottom: 0.75px solid rgba(33, 42, 57, 0.25);
+}
+.main-course .certificate-card-content .description {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  font-size: 18px;
+  color: #212a39;
+  line-height: 22px;
+  width: 100%;
+  padding-top: 15px;
+}
+.main-course .certificate-card-content button {
+  height: 48px;
+  float: right;
+ background-color: #5D9186;
+  font-size: 18px;
+  padding: 0 10px;
+  line-height: 24px;
+  font-weight: 600;
+  font-family: 'Source Sans Pro', sans-serif !important;
+  border-radius: 8px;
+  color: #fff;
+  border: none;
+}
+.main-course .img {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 .main-course .card img {
   width: 25%;
@@ -190,7 +263,7 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 29px;
-  color: var(--baseColor);
+  color: #055646;
   margin-top: 10px;
 
 }
@@ -203,6 +276,7 @@ h2 {
   line-height: normal;
   letter-spacing: normal;
   text-align: left;
+  
 }
 .main-course .accordian {
   width: 100%;
