@@ -25,10 +25,10 @@ app.use(express.json({ extended: false }));
 app.use('/api', routes)
 
 
- app.use(express.static(path.join(__dirname, "./client/build")));
+ app.use(express.static(path.join(__dirname, "./client/clbuild")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./client/build/index.html"));
+  res.sendFile(path.resolve(__dirname, "./client/clbuild/index.html"));
 });
 
 
