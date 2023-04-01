@@ -1,49 +1,108 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../Styles/Course.css";
-import Avatar from "@mui/material/Avatar";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import Nav from "../Components/Nav";
+import Sidebar from "../Components/Sidebar";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+
+import axios from "axios";
+import { Container } from "@mui/material";
 
 function Course() {
+  const [coursedata, setCoursedata] = useState({});
+  const [chaptersdata, setChaptersdata] = useState([]);
+
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const fetchdata = async (req, res) => {
+      setLoading(true);
+      const { data } = await axios.get("/api/courses");
+      const { courses } = data;
+      console.log(courses[0]);
+      setCoursedata({ ...courses[0] });
+      setChaptersdata([...courses[0].chapters]);
+      setLoading(false);
+    };
+    fetchdata();
+  }, []);
+
   return (
     <>
-      <div className="main">
-        <div className="main-sidebar">
-          <div className="logo">
-            <img
-              src="https://cdn.pegasus.imarticus.org/images/imarticus-new-logo.svg"
-              alt="logo"
-            />
-          </div>
-          <ul>
-            <li>Course</li>
-            <li>Discussion</li>
-          </ul>
+      {loading ? (
+        <div>loading</div>
+      ) : (
+        <div className="main">
+          <Sidebar />
 
-          <div className="side-bar-freshdesk-container">
-            <div className="side-bar-freshdesk-heading">Facing Problems?</div>
-            <button class="side-bar-freshdesk-button">Get help</button>
-          </div>
-        </div>
-
-        <div className="main-course">
-          <div className="nav">
-            <span class="nav-title">Introduction to Machine Learning</span>
-            <div className="nav-right">
-              <button className="nav-get-help">
-                <img
-                  src="https://learn.pegasus.imarticus.org/images/Support.svg"
-                  alt="get-help"
-                />
-                Get help
-              </button>
-              <Avatar />
-              <div className="usertext">
-                User Name <KeyboardArrowDownIcon/>
+          <div className="main-course">
+            <Nav />
+            <div className="container">
+              <div className="course">
+                <div className="breadcrumbs">
+                  All Courses <ChevronRightIcon /> {coursedata.course_name}
+                </div>
+                <div className="card">
+                  <img src={coursedata.course_img} alt="course_img" />
+                  <div className="card-content">
+                    <div className="title">{coursedata.course_name}</div>
+                    <div className="content">0% Complete</div>
+                  </div>
+                </div>
+                <div className="accordian">
+                  {loading ? (
+                    <h3>Loading....</h3>
+                  ) : (
+                    <div>
+                      {chaptersdata.map((chapter) => {
+                        return (
+                          <Accordion key={chapter._id}>
+                            <AccordionSummary
+                              expandIcon={<ExpandMoreIcon />}
+                              aria-controls="panel1a-content"
+                              id="panel1a-header"
+                            >
+                              <h2>
+                                {
+                                  `${chaptersdata.indexOf(chapter) + 1}.  ${chapter.chapter_name}`
+                                }
+                                
+                              </h2>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                              {chapter.lectures.map((lecture) => {
+                                return (
+                                  <Container key={lecture._id}
+                                    sx={{ display: "flex", margin: "1rem" }}
+                                    fixed
+                                  >
+                                    <PlayCircleOutlineIcon
+                                      sx={{
+                                        color: "#212a39",
+                                        mx: "1rem",
+                                      }}
+                                    /> {
+                                      `${chapter.lectures.indexOf(lecture) + 1}. ${lecture.lecture_name}`
+                                    }
+                                   
+                                  </Container>
+                                );
+                              })}
+                            </AccordionDetails>
+                          </Accordion>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
