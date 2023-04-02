@@ -4,7 +4,8 @@ const path = require("path");
 const express = require('express');
 const mongoose = require('mongoose');
 const mongoString = process.env.DATABASE_URL;
-const routes = require("./routes/courses")
+const courses = require("./routes/courses");
+const User = require('./routes/user');
 
 
 mongoose.connect(mongoString);
@@ -22,7 +23,8 @@ app.use(cors());
 app.use(express.json({ extended: false }));
 
 
-app.use('/api', routes)
+app.use('/api', courses)
+app.use('/api', User)
 
 
  app.use(express.static(path.join(__dirname, "./client/clbuild")));
