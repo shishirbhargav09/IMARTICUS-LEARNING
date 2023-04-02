@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { BsPersonCircle } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
@@ -7,37 +7,58 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import Loader from "../Components/Loader";
+import { GoogleLogin } from '@react-oauth/google';
+import { login } from "../Store/authSlice";
+import { useDispatch } from "react-redux";
+import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
+
+
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
+  const responseMessage = (response) => {
+    console.log(response);
+    dispatch(login())
+    navigate('/course')
+};
+const errorMessage = (error) => {
+    console.log(error);
+};
+
+
   const loginHandler = (e) => {
     setLoader(true);
     axios
-      .post(`/api/login`, {
+      .post(`http://localhost:4000/api/login`, {
         email: email,
         password: password,
       })
       .then(function (response) {
         console.log(response);
-        const token = response.data.token;
+        // const token = response.data.token;
         const username = response.data.user.name;
+        dispatch(login({username}))
 
-        localStorage.setItem("token", token);
-        localStorage.setItem("username", username);
+       
 
         setLoader(false);
         toast.success("Successfully Login");
-        navigate("/register");
+        navigate("/course");
       })
       .catch(function (error) {
         console.log(error);
         toast.error("Wrong Credintials");
         setLoader(false);
       });
+
+   
   };
   return (
     <Container>
@@ -86,6 +107,10 @@ const Login = () => {
           {" "}
           New User ? <Link to="/register">Register</Link>
         </p>
+        <div>
+        <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+
+        </div>
       </FormContainer>
     </Container>
   );

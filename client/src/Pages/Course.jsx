@@ -13,8 +13,16 @@ import LockIcon from '@mui/icons-material/Lock';
 import axios from "axios";
 import { Container } from "@mui/material";
 import Loader from "../Components/Loader";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Course() {
+  const navigate = useNavigate()
+  const isloggedin = useSelector((state) => state.Auth.isloggedin);
+  if(!isloggedin){
+navigate('/')
+  }
+
   const [coursedata, setCoursedata] = useState({});
   const [chaptersdata, setChaptersdata] = useState([]);
 
@@ -22,7 +30,7 @@ function Course() {
   useEffect(() => {
     const fetchdata = async (req, res) => {
       setLoading(true);
-      const { data } = await axios.get("/api/courses");
+      const { data } = await axios.get("http://localhost:4000/api/courses");
       const { courses } = data;
       console.log(courses[0]);
       setCoursedata({ ...courses[0] });

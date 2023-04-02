@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { BsPersonCircle, BsFillPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
@@ -6,7 +6,7 @@ import { MdEmail } from "react-icons/md";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import Loader from "../Components/Loader";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
   const [loader, setLoader] = useState(false);
@@ -20,7 +20,7 @@ function Register() {
   const registerHandler = (e) => {
     setLoader(true)
     axios
-    .post(`/api/register`, {
+    .post(`http://localhost:4000/api/register`, {
       name: username,
       email: email,
       password: password,
@@ -100,6 +100,10 @@ function Register() {
         {
           loader && <Loader/>
         }
+         <p>
+          {" "}
+          Already Registered ? <Link to="/">Sign In</Link>
+        </p>
       </FormContainer>
     </Container>
   );
