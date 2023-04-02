@@ -2,6 +2,7 @@ import React from 'react'
 import Avatar from "@mui/material/Avatar";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 function Nav() {
+  const username = localStorage.getItem("username")
   return (
      <div className="nav">
             <span className="nav-title">Introduction to Machine Learning</span>
@@ -15,7 +16,7 @@ function Nav() {
               </button>
               <Avatar />
               <div className="usertext">
-                User Name <KeyboardArrowDownIcon/>
+                {username} <KeyboardArrowDownIcon/>
               </div>
             </div>
           </div>

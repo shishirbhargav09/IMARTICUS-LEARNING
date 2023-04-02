@@ -12,6 +12,7 @@ import LockIcon from '@mui/icons-material/Lock';
 
 import axios from "axios";
 import { Container } from "@mui/material";
+import Loader from "../Components/Loader";
 
 function Course() {
   const [coursedata, setCoursedata] = useState({});
@@ -34,7 +35,7 @@ function Course() {
   return (
     <>
       {loading ? (
-        <div>loading</div>
+        <div><Loader/></div>
       ) : (
         <div className="main">
           <Sidebar />
