@@ -20,7 +20,7 @@ function Register() {
   const registerHandler = (e) => {
     setLoader(true)
     axios
-    .post(`http://localhost:4000/api/register`, {
+    .post(`/api/register`, {
       name: username,
       email: email,
       password: password,

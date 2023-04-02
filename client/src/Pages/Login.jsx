@@ -10,7 +10,6 @@ import Loader from "../Components/Loader";
 import { GoogleLogin } from '@react-oauth/google';
 import { login } from "../Store/authSlice";
 import { useDispatch } from "react-redux";
-import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
 
@@ -25,7 +24,7 @@ const Login = () => {
 
   const responseMessage = (response) => {
     console.log(response);
-    dispatch(login())
+    dispatch(login({username: 'username'}))
     navigate('/course')
 };
 const errorMessage = (error) => {
@@ -36,7 +35,7 @@ const errorMessage = (error) => {
   const loginHandler = (e) => {
     setLoader(true);
     axios
-      .post(`http://localhost:4000/api/login`, {
+      .post(`/api/login`, {
         email: email,
         password: password,
       })
@@ -107,16 +106,20 @@ const errorMessage = (error) => {
           {" "}
           New User ? <Link to="/register">Register</Link>
         </p>
-        <div>
+        <Googlecontainer>
         <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
 
-        </div>
+        </Googlecontainer>
       </FormContainer>
     </Container>
   );
 };
 
 export default Login;
+
+const Googlecontainer = styled.div`
+  margin: 1rem;
+`
 
 const Button = styled.button`
   margin: 1rem;

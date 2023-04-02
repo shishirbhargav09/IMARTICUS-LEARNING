@@ -3,10 +3,11 @@ import Avatar from "@mui/material/Avatar";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Store/authSlice";
 
 function Nav() {
+  const username  = useSelector((state) => state.Auth.username);
   const navigate = useNavigate()
   const dispatch = useDispatch();
   return (
@@ -23,7 +24,7 @@ function Nav() {
         <Avatar />
 
         <div className="usertext">
-          Username <KeyboardArrowDownIcon />
+          {username} <KeyboardArrowDownIcon />
           <LogoutIcon onClick={() => {
             dispatch(logout())
             navigate('/')

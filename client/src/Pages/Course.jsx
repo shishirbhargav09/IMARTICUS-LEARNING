@@ -30,7 +30,7 @@ navigate('/')
   useEffect(() => {
     const fetchdata = async (req, res) => {
       setLoading(true);
-      const { data } = await axios.get("http://localhost:4000/api/courses");
+      const { data } = await axios.get("/api/courses");
       const { courses } = data;
       console.log(courses[0]);
       setCoursedata({ ...courses[0] });
